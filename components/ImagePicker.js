@@ -6,12 +6,12 @@ import {
 } from "expo-image-picker";
 import { useState } from "react";
 import { Colors } from "../constants/colors";
+import OutlineButton from "./UI/OutlineButton";
 
 const ImagePicker = () => {
   const [camPermissionInfo, requestPermissions] = useCameraPermissions();
   const [imageOrg, setImage] = useState();
   async function verifyPermissions() {
-    console.log(camPermissionInfo, "123123");
     if (camPermissionInfo.status === PermissionStatus.UNDETERMINED) {
       const permissionsResponse = await requestPermissions();
       return permissionsResponse.granted;
@@ -45,7 +45,7 @@ const ImagePicker = () => {
           <Text style={styles.image}>No preview available.</Text>
         )}
       </View>
-      <Button title="Add Image" onPress={pickImage} />
+      <OutlineButton icon={"camera"} title="Add Image" onPress={pickImage} >Take Image</OutlineButton>
     </View>
   );
 };
